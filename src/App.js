@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Form from "./components/form";
+import TodosList from "./components/TodosList";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [input, setInput] = useState("");
+  const [todos, setTodos] = useState([]); //keeping  tracks of all todo list items so we use usestate hooks and assign its value to empty array
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="app-wrapper">
+        <div>
+          <Header />
+        </div>
+        <div>
+          <Form
+            input={input}
+            setInput={setInput}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        </div>
+        <div>
+          <TodosList todos = {todos} setTodos={setTodos} />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
